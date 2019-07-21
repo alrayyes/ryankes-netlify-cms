@@ -47,7 +47,7 @@ The response:
    "id":"b4bd7238111424a17180fc52c88fed96",
    "url":"https://app.wercker.com/api/v3/applications/alrayyes/ryankes.eu",
    "name":"ryankes.eu",
-   "owner":{
+   "owner":{ 
       "type":"wercker",
       "name":"alrayyes",
       "avatar":{

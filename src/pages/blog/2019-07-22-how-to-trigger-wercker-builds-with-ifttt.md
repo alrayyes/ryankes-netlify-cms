@@ -1,8 +1,8 @@
 ---
 templateKey: blog-post
-title: 'How To Trigger Wercker Builds With IFTTT'
+title: How To Trigger Wercker Builds With IFTTT
 date: 2016-10-02T13:24:00.000Z
-description: >
+description: |
   How to trigger Wercker builds with IFTTT
 featuredpost: false
 featuredimage: /img/how-to-trigger-wercker-builds-with-ifttt_header.jpg

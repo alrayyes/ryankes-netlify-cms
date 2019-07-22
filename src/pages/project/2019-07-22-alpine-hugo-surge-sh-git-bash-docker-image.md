@@ -17,7 +17,7 @@ I use [wercker](http://wercker.com) to automatically deploy this site. One of th
 
 The [Dockerfile](https://github.com/alrayyes/docker-alpine-hugo-surge-git-bash/blob/master/Dockerfile) itself is nothing shocking:
 
-{{< highlight docker >}}
+```docker
 FROM mhart/alpine-node:latest
 MAINTAINER Ryan Kes <ryan@andthensome.nl>
 
@@ -34,7 +34,7 @@ RUN tar xzf /usr/local/${HUGO_BINARY}.tgz -C /usr/local/bin/ \
 
 # Install surge client
 RUN npm install -g surge
-{{< /highlight >}}
+```
 
 A comparison of image sizes & build/deploy speeds :
 

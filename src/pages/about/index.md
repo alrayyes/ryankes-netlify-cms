@@ -1,6 +1,7 @@
 ---
-templateKey: about-page
-title: About
+templateKey: 'about-page'
+path: /about
+title: About our values
 ---
 
 ## What OS do you run?

@@ -14,7 +14,7 @@ This is a quick tutorial to teach you how to integrate your [Last.fm feed](http:
 
 The demo is basically a one page template. I've highlighted the important part.
 
-```html{31  35 36 37 38 39 40 41 42}
+```html{31, 35, 36, 37, 38, 39, 40, 41, 42, numberLines: true}
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -35,11 +35,11 @@ Now we can create a new recipe to trigger Wercker builds on Instagram updates. I
 
 Choose "Instagram => Any new photo taken by you" as an IF trigger
 -
-![IFTTT screenshot of Instagram trigger](how-to-trigger-wercker-builds-with-ifttt-instagramtrigger.png)
+![IFTTT screenshot of Instagram trigger](how-to-trigger-wercker-builds-with-ifttt_instagramtrigger.png)
 
 Choose "Maker => Make a web request" as an action
 -
-![IFTTT screenshot of Maker action](how-to-trigger-wercker-builds-with-ifttt-makeraction.png)
+![IFTTT screenshot of Maker action](how-to-trigger-wercker-builds-with-ifttt_makeraction.png)
 
 ***
 

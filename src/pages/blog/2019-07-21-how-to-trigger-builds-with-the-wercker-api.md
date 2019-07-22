@@ -24,7 +24,7 @@ This site is built using [Hugo](https://gohugo.io) with automatic builds & deplo
 ### `<token>`
 According to the [documentation](http://devcenter.wercker.com/api/getting-started/authentication.html) this can be generated in the [profile settings](https://app.wercker.com/profile/tokens)
 
-![Generate Wercker token](how-to-trigger-wercker-builds-with-the-wercker-api/generate-token.png)
+![Generate Wercker token](generate-token.png)
 
 For sake of argument lets say that the generated token is *7c6a180b36896a0a8c02787eeafb0e4c*
 

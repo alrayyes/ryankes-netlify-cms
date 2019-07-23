@@ -10,6 +10,7 @@ featuredimage: /img/screenshot.jpg
 tags:
   - lgr SimEarth youtube
 ---
+
 Just thought I'd share this ~~[SimEarth](https://en.wikipedia.org/wiki/SimEarth) review~~ video telling the tale of this once great civilisation.
 
 `youtube: 3O_yXk8A98U`

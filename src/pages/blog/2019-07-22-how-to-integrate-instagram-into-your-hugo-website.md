@@ -11,6 +11,7 @@ featuredimage: /img/integrating-instagram-into-your-hugo-site_header.jpg
 tags:
   - hugo instagram api tutorial
 ---
+
 ~~This is a quick tutorial to teach you how to integrate your [Instagram feed](http://instagram.com/alrayyes) into your hugo site~~ [^1]. To keep things nice and simple I've created a [demo theme](https://github.com/alrayyes/instagram-hugo-demo-theme) to get you started, which you can see running [here](https://instagram-hugo-demo.ryankes.eu/).
 
 The demo is basically a one page template. I've highlighted the important part.â€‹
@@ -18,69 +19,92 @@ The demo is basically a one page template. I've highlighted the important part.â
 ```html{31-43}{numberLines: true}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="author" content="Ryan Kes">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ryan Kes" />
     <meta name="generator" content="Hugo 0.16" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A page that demonstrates Hugo working with the Instagram api">
-    <meta name="keywords" content="Instagram, Hugo, api, tutorial, demo">
-    <meta name="generation-date" content="{{ .Now }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A page that demonstrates Hugo working with the Instagram api"
+    />
+    <meta name="keywords" content="Instagram, Hugo, api, tutorial, demo" />
+    <meta name="generation-date" content="{{ .Now }}" />
 
     <title>Instagram Hugo Demo</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
     {{ template "_internal/google_analytics_async.html" . }}
-</head>
+  </head>
 
-<body>
-
-<a href="https://github.com/alrayyes/instagram-hugo-demo-theme"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
-<div class="container-fluid">
-    <div class="row text-center">
+  <body>
+    <a href="https://github.com/alrayyes/instagram-hugo-demo-theme"
+      ><img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+        alt="Fork me on GitHub"
+        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+    /></a>
+    <div class="container-fluid">
+      <div class="row text-center">
         <h3 style="color:white;font-family:verdana;">
-            <a href="https://www.instagram.com/" target="_new">Instagram</a> <a href="https://gohugo.io/" target="_new">Hugo</a> Demo<br><small><a href="http://ryankes.eu">Ryan Kes</a></small><br>
-            Design inspired by <a href="http://bootsnipp.com/snippets/featured/image-tiles-full-width" target="_new">Snap TightImage Tiles snippet</a><br>
-            See <a href="https://ryankes.eu/post/integrating-instagram-into-your-hugo-site/">blog post</a> for more information
+          <a href="https://www.instagram.com/" target="_new">Instagram</a>
+          <a href="https://gohugo.io/" target="_new">Hugo</a> Demo<br /><small
+            ><a href="http://ryankes.eu">Ryan Kes</a></small
+          ><br />
+          Design inspired by
+          <a
+            href="http://bootsnipp.com/snippets/featured/image-tiles-full-width"
+            target="_new"
+            >Snap TightImage Tiles snippet</a
+          ><br />
+          See
+          <a
+            href="https://ryankes.eu/post/integrating-instagram-into-your-hugo-site/"
+            >blog post</a
+          >
+          for more information
         </h3>
-    </div>
-    <div class="row">
-        {{ $dataJ := getJSON (printf "https://api.instagram.com/v1/users/self/media/recent/?access_token=%s" .Site.Params.access_token) }}
-        {{ range $dataJ.data }}
+      </div>
+      <div class="row">
+        {{ $dataJ := getJSON (printf
+        "https://api.instagram.com/v1/users/self/media/recent/?access_token=%s"
+        .Site.Params.access_token) }} {{ range $dataJ.data }}
         <a href="{{ .link }}" target="_new">
-
-            <div class="cover-card col-sm-4" style="background: url({{ .images.standard_resolution.url }}) no-repeat center top;background-size:cover;">
-                <p>
-                    {{ with .caption }}{{ .text }}<br>
-                    -<br>{{ end }}
-                    <span class="play-date" data-date="{{ .created_time }}"></span>
-                </p>
-            </div>
+          <div
+            class="cover-card col-sm-4"
+            style="background: url({{ .images.standard_resolution.url }}) no-repeat center top;background-size:cover;"
+          >
+            <p>
+              {{ with .caption }}{{ .text }}<br />
+              -<br />{{ end }}
+              <span class="play-date" data-date="{{ .created_time }}"></span>
+            </p>
+          </div>
         </a>
         {{ end }}
+      </div>
     </div>
-</div>
 
-<script src="/js/jquery-1.10.2.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/moment.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('span.play-date').each(function(i, e) {
-            var date = moment.unix($(e).data('date'));
-            $(e).html(date.fromNow());
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("span.play-date").each(function(i, e) {
+          var date = moment.unix($(e).data("date"));
+          $(e).html(date.fromNow());
         });
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>
 ```
 
 On line 31 we connect to the [Instagram api](https://www.instagram.com/developer/) with 1 parameter:
- 
+
 1. access token (which you can generate [here](http://instagram.pixelunion.net/))
- 
+
 This returns something like:
 
 ```json
@@ -92,58 +116,60 @@ This returns something like:
   "meta": {
     "code": 200
   },
-  "data": [{
-    "attribution": null,
-    "tags": ["test", "hugo", "wercker", "ifttt"],
-    "type": "image",
-    "location": null,
-    "comments": {
-      "count": 0
-    },
-    "filter": "Amaro",
-    "created_time": "1475414438",
-    "link": "https://www.instagram.com/p/BLD981pBazX/",
-    "likes": {
-      "count": 3
-    },
-    "images": {
-      "low_resolution": {
-        "url": "https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
-        "width": 320,
-        "height": 320
+  "data": [
+    {
+      "attribution": null,
+      "tags": ["test", "hugo", "wercker", "ifttt"],
+      "type": "image",
+      "location": null,
+      "comments": {
+        "count": 0
       },
-      "thumbnail": {
-        "url": "https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
-        "width": 150,
-        "height": 150
-      },
-      "standard_resolution": {
-        "url": "https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
-        "width": 640,
-        "height": 640
-      }
-    },
-    "users_in_photo": [],
-    "caption": {
+      "filter": "Amaro",
       "created_time": "1475414438",
-      "text": "Which one to pick? #test #ifttt #wercker #hugo",
-      "from": {
+      "link": "https://www.instagram.com/p/BLD981pBazX/",
+      "likes": {
+        "count": 3
+      },
+      "images": {
+        "low_resolution": {
+          "url": "https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
+          "width": 320,
+          "height": 320
+        },
+        "thumbnail": {
+          "url": "https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
+          "width": 150,
+          "height": 150
+        },
+        "standard_resolution": {
+          "url": "https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/14488341_1365561496789352_8898975373191020544_n.jpg?ig_cache_key=MTM1MjE5Njc3NDc0MzYxNjcyNw%3D%3D.2",
+          "width": 640,
+          "height": 640
+        }
+      },
+      "users_in_photo": [],
+      "caption": {
+        "created_time": "1475414438",
+        "text": "Which one to pick? #test #ifttt #wercker #hugo",
+        "from": {
+          "username": "alrayyes",
+          "profile_picture": "https://scontent.cdninstagram.com/t51.2885-19/11821796_875675509184288_365567230_a.jpg",
+          "id": "30589186",
+          "full_name": ""
+        },
+        "id": "17842838194149837"
+      },
+      "user_has_liked": false,
+      "id": "1352196774743616727_30589186",
+      "user": {
         "username": "alrayyes",
         "profile_picture": "https://scontent.cdninstagram.com/t51.2885-19/11821796_875675509184288_365567230_a.jpg",
         "id": "30589186",
         "full_name": ""
-      },
-      "id": "17842838194149837"
-    },
-    "user_has_liked": false,
-    "id": "1352196774743616727_30589186",
-    "user": {
-      "username": "alrayyes",
-      "profile_picture": "https://scontent.cdninstagram.com/t51.2885-19/11821796_875675509184288_365567230_a.jpg",
-      "id": "30589186",
-      "full_name": ""
+      }
     }
-  }]
+  ]
 }
 ```
 
